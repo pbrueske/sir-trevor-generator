@@ -86,7 +86,8 @@
             type: 'file',
             name: name,
             class: component.class,
-            'data-parent': parent
+            'data-parent': parent,
+            'data-metadata': component.metadata || null
           });
 
           $element.on('change', function(ev) {
@@ -790,27 +791,33 @@
         var $target = $(target);
 
         // Hide the file uploader, and prevent it being included in data scapes for this card
-        $target.attr('type', 'hidden').val(data.url);
+        $target.attr('type', 'hidden').val(data.file.url);
+        if($target.attr('data-metadata')) {
+          $target.closest('.st-block')
+                 .find('div[data-name="' + $target.attr('data-metadata') + '"]')
+                 .find('input[type="hidden"]')
+                 .val(JSON.stringify(data))
+        }
 
         // Setup the template and HTML for the file preview
         var $filePreview = $('<div>');
         switch(data.type) {
           case 'image':
             var $filePreviewElem = $('<img>', {
-              src: data.url,
+              src: data.file.url,
               class: 'st-image-preview'
             });
             break;
           case 'audio':
             var $filePreviewElem = $('<audio>', {
-              src: data.url,
+              src: data.file.url,
               controls: 'controls',
               preload: 'auto',
             });
             break;
           case 'video':
             var $filePreviewElem = $('<video>', {
-              src: data.url,
+              src: data.file.url,
               controls: 'controls',
             });
             break;
@@ -955,10 +962,7 @@
         this.uploader(
           file,
           function(data) {
-            this.updateFileData({
-              url: data.file.url,
-              type: typeData,
-            }, transferData);
+            this.updateFileData($.extend(data, {type: typeData}), transferData);
             this.ready();
           },
           function(error){
