@@ -74,6 +74,13 @@
             $element.addClass('st-required');
           }
           break;
+        case 'metadata':
+          var $element = $('<input>', {
+            type: 'hidden',
+            name: name,
+            value: (value ? value : null),
+          });
+          break;
         case 'file':
           var $element = $('<input>', {
             type: 'file',
