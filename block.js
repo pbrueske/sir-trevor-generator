@@ -65,6 +65,7 @@
           var $element = $('<input>', {
             type: 'text',
             name: name,
+            'data-st-name': component.stName,
             placeholder: component.placeholder,
             value: (value ? value : component.default),
             class: component.class,
@@ -85,6 +86,7 @@
           var $element = $('<input>', {
             type: 'file',
             name: name,
+            'data-st-name': component.stName,
             class: component.class,
             'data-parent': parent,
             'data-metadata': component.metadata || null
@@ -161,6 +163,7 @@
           var $element = $('<input>', {
             type: 'number',
             name: name,
+            'data-st-name': component.stName,
             min: component.min,
             max: component.max,
             step: component.step,
@@ -179,6 +182,7 @@
             class: 'st-text-block st-formattable st-textarea-block__editor st-block__editor',
             name: name
           });
+          'data-st-name': component.stName,
 
           component.default = component.default || '';
 
@@ -217,6 +221,7 @@
           var $element = $('<select>', {
             class: 'st-select',
             name: name,
+            'data-st-name': component.stName,
           });
 
           component.default = component.default || '';
@@ -392,6 +397,7 @@
           var $element = $('<input>', {
             type: 'checkbox',
             name: name,
+            'data-st-name': component.stName,
             /** If the checkbox has never been set before then the value field will be the empty string, in which case we
             use the default value. This could in theory be any string, so we'll decide that 'false' is false and anything
             else is true. If the checkbox has previously been set, its value will be a boolean so we can safely use that. **/
@@ -406,6 +412,7 @@
         case 'table':
           var $element = $('<div>', {
             name: name,
+            'data-st-name': component.stName,
             type: 'table'
           });
 
