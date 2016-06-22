@@ -729,6 +729,7 @@
       this.defaults.scribeOptions = {
         tags: {
           script: false,
+          ol: true,
           ul: true,
           li: true,
           p: {
@@ -1128,7 +1129,7 @@
     return this;
   };
 
-  var ScribeGeneratorBlockPlugin = function(block) { 
+  var ScribeGeneratorBlockPlugin = function(block) {
     return function(scribe) {
     };
   };
