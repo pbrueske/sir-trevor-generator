@@ -180,9 +180,9 @@
           var $element = $('<div>', {
             contenteditable: true,
             class: 'st-text-block st-formattable st-textarea-block__editor st-block__editor',
-            name: name
+            name: name,
+            'data-st-name': component.stName
           });
-          'data-st-name': component.stName,
 
           component.default = component.default || '';
 
@@ -221,7 +221,7 @@
           var $element = $('<select>', {
             class: 'st-select',
             name: name,
-            'data-st-name': component.stName,
+            'data-st-name': component.stName
           });
 
           component.default = component.default || '';
